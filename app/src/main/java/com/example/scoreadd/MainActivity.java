@@ -5,19 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    int mScore1 = 0;
-    int mScore2 = 0;
+    static int mScore1 = 0;
+    static int mScore2 = 0;
 
-    TextView mScoreText1,mScoreText2;
+    TextView mScoreText1,mScoreText2,intentTeam1, intentTeam2;
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -56,6 +59,20 @@ public class MainActivity extends AppCompatActivity {
 
         mScoreText1 = findViewById(R.id.score_1);
         mScoreText2 = findViewById(R.id.score_2);
+        intentTeam1 = findViewById(R.id.givenTeam1);
+        intentTeam2 = findViewById(R.id.givenTeam2);
+
+
+        String teamName1 = getIntent().getStringExtra("userInput1");
+        String teamName2 = getIntent().getStringExtra("userInput2");
+
+        intentTeam1.setText(teamName1);
+        intentTeam2.setText(teamName2);
+
+        if(savedInstanceState != null){
+            mScore1 = savedInstanceState.getInt("STATE_SCORE_1");
+            mScore2 = savedInstanceState.getInt("STATE_SCORE_2");
+        }
 
     }
 
@@ -79,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 mScore2--;
                 mScoreText2.setText(String.valueOf(mScore2));
         }
+
     }
 
     public void increaseScore(View view) {
@@ -95,5 +113,33 @@ public class MainActivity extends AppCompatActivity {
                 mScoreText2.setText(String.valueOf(mScore2));
 
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("STATE_SCORE_1",mScore1);
+        outState.putInt("STATE_SCORE_2",mScore2);
+        super.onSaveInstanceState(outState);
+    }
+
+    public void moveToResult(View view) {
+        if (mScore2 == mScore1)
+        {
+            Intent i1 = new Intent(MainActivity.this,DrawActivity.class);
+            startActivity(i1);
+        }
+        else {
+            String teamName1 = getIntent().getStringExtra("userInput1");
+            String teamName2 = getIntent().getStringExtra("userInput2");
+            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+            intent.putExtra("intScore1", mScore1);
+            intent.putExtra("intScore2", mScore2);
+            intent.putExtra("team1win", teamName1);
+            intent.putExtra("team2win", teamName2);
+            startActivity(intent);
+        }
+
+        //make one more for same score.
+
     }
 }

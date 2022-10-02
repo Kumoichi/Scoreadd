@@ -13,6 +13,7 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/givenTeam1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -22,13 +23,13 @@
 
         <ImageButton
             android:id="@+id/decreaseTeam1"
-            android:onClick="decreaseScore"
+            style="@style/MinusButtons"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            style="@style/MinusButtons" />
+            android:onClick="decreaseScore" />
 
         <TextView
             android:id="@+id/score_1"
@@ -41,21 +42,22 @@
 
         <ImageButton
             android:id="@+id/increaseTeam1"
-            android:onClick="increaseScore"
+            style="@style/PlusButtons"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            style="@style/PlusButtons"/>
+            android:onClick="increaseScore" />
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/givenTeam2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -92,5 +94,20 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             style="@style/PlusButtons"/>
+
+        <Button
+            android:id="@+id/toResultPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/score_2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="155dp"
+            android:layout_marginBottom="59dp"
+            android:onClick="moveToResult"
+            android:text="next" />
     </RelativeLayout>
 </LinearLayout>
