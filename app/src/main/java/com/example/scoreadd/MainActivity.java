@@ -21,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
     TextView mScoreText1,mScoreText2,intentTeam1, intentTeam2;
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //check if the correct item was clicked
         if(item.getItemId()==R.id.night_mode){
+            //get the night mode state of the app
             int nightMode = AppCompatDelegate.getDefaultNightMode();
+            //set the theme mode for the restarted activity
             if(nightMode==AppCompatDelegate.MODE_NIGHT_YES){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }else{
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu from XML
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
         //change the label of the menu based on the state of the app
@@ -56,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mScoreText1 = findViewById(R.id.score_1);
         mScoreText2 = findViewById(R.id.score_2);
         intentTeam1 = findViewById(R.id.givenTeam1);
@@ -72,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState != null){
             mScore1 = savedInstanceState.getInt("STATE_SCORE_1");
             mScore2 = savedInstanceState.getInt("STATE_SCORE_2");
+
+            //set the score text views
+            mScoreText1.setText(String.valueOf(mScore1));
+            mScoreText2.setText(String.valueOf(mScore2));
         }
 
     }
@@ -107,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 mScore1++;
                 mScoreText1.setText(String.valueOf(mScore1));
                 break;
-
+                //if it was Team2
             case R.id.increaseTeam2:
                 mScore2++;
                 mScoreText2.setText(String.valueOf(mScore2));
@@ -117,12 +123,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+        //save the scores
         outState.putInt("STATE_SCORE_1",mScore1);
         outState.putInt("STATE_SCORE_2",mScore2);
         super.onSaveInstanceState(outState);
     }
 
+    //moving string value and int value to the result activity page.
     public void moveToResult(View view) {
+        //if score is same it moves to draw page
         if (mScore2 == mScore1)
         {
             Intent i1 = new Intent(MainActivity.this,DrawActivity.class);
@@ -138,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("team2win", teamName2);
             startActivity(intent);
         }
-
-        //make one more for same score.
 
     }
 }

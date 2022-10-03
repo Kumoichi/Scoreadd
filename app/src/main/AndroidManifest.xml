@@ -13,9 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Scoreadd"
         tools:targetApi="31">
+
         <activity
             android:name=".DrawActivity"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawActivity" />
+        </activity>
+
         <activity
             android:name=".ResultActivity"
             android:parentActivityName=".MainActivity">
@@ -23,6 +29,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ResultActivity" />
         </activity>
+
         <activity
             android:name=".StartActivity"
             android:exported="true">
@@ -32,6 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:parentActivityName=".StartActivity">
@@ -39,6 +47,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
     </application>
 
 </manifest>

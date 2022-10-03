@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
         textview2 = findViewById(R.id.textViewTeamname2);
     }
 
-
+    //displaying teamname.
     public void buttonDisplay(View view) {
         String teamName1 = edittext1.getText().toString();
         String teamName2 = edittext2.getText().toString();
@@ -32,6 +32,7 @@ public class StartActivity extends AppCompatActivity {
         textview2.setText(teamName2);
     }
 
+    //moving String values to the main activity page.
     public void nextPage(View view) {
         String input1 = edittext1.getText().toString();
         String input2 = edittext2.getText().toString();

@@ -3,7 +3,7 @@ package com.example.scoreadd;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
+//This class exists for just displaying Draw.
 public class DrawActivity extends AppCompatActivity {
 
     @Override
